@@ -90,6 +90,7 @@ RUN \
     echo "Change Owner of /app/Mods to 7DaysToDie" && \
     chown --recursive 999:root /app/Mods && \
     echo "Change Owner of /app/Saves to 7DaysToDie" && \
+    mkdir /app/Saves && \
     chown --recursive 999:root /app/Saves && \
     echo "Modifying serverconfig.xml" && \
     sed -i 's/<!--property name="SaveGameFolder"/<property name="SaveGameFolder"/g' /app/serverconfig.xml && \
