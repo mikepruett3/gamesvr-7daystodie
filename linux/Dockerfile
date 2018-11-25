@@ -80,7 +80,7 @@ RUN \
     tar -xvzf /app/Mods/server_fixes_v14_17_26.tar.gz -C /app && \
     echo "Installing djkrose's Scripting Mod" && \
     wget -P /app/Mods https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && \
-    unzip /app/Mods/ScriptingMod_v1.0.zip -d /app; exit 0 && \
+    unzip /app/Mods/ScriptingMod_v1.0.zip -d /app
 
 # Cleanup after Mods Install
 RUN \
