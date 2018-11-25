@@ -87,8 +87,15 @@ RUN \
     7z rn /app/zipfix/ScriptingMod_v1.0.zip $(7z l /app/zipfix/ScriptingMod_v1.0.zip | grep '\\' | awk '{ print $6, gsub(/\\/, "/",$0); print $6}' | awk '{ print $1}' | paste -s) && \
     7z x /app/zipfix/ScriptingMod_v1.0.zip -o/app && \
     rm -vrf /app/zipfix && \
-    echo "Change Owner of /app to 7DaysToDie" && \
-    chown 999:root -R /app
+    echo "Change Owner of /app/Mods to 7DaysToDie" && \
+    chown --recursive 999:root /app/Mods && \
+    echo "Change Owner of /app/Saves to 7DaysToDie" && \
+    chown --recursive 999:root /app/Saves && \
+    echo "Modifying serverconfig.xml" && \
+    sed 's/<!--property name="SaveGameFolder"/<property name="SaveGameFolder"/g' /app/serverconfig.xml && \
+    sed 's/value="absolute path" \/-->/value="\/app\/Saves"\/>/g' /app/serverconfig.xml
+    echo "Change Owner of //app/serverconfig.xml to 7DaysToDie" && \
+    chown 999:root /app/serverconfig.xml && \
 
 USER 7DaysToDie
 
@@ -99,4 +106,4 @@ CMD ["/bin/bash"]
 ONBUILD USER root
 
 # Volumes for Persistent Server Data
-VOLUME [ "/app/.local/share/7DaysToDie/Saves", "/app/Mods" ]
+VOLUME [ "/app/Saves", "/app/Mods" ]
