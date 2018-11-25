@@ -93,7 +93,7 @@ RUN mkdir /app/Mods && `
     # Alloc's Server Fixes
         wget -P /app/Mods http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz && `
         tar -xvzf /app/Mods/server_fixes_v14_17_26.tar.gz -C /app && `
-        rm -vf -P /app/Mods/server_fixes_v14_17_26.tar.gz && `
+        rm -vf /app/Mods/server_fixes_v14_17_26.tar.gz && `
     # StompiNZ's Bad Company Manager 
         wget -P /app/Mods https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && `
         unzip /app/Mods/ScriptingMod_v1.0.zip -d /app; exit 0 && `
