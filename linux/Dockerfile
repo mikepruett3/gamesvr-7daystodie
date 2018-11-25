@@ -84,7 +84,7 @@ RUN \
     echo "Installing djkrose's Scripting Mod" && \
     wget -P /app/Mods https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && \
     bsdtar -xf /app/Mods/ScriptingMod_v1.0.zip -C /app/ && \
-    rm -vf /app/Mods/ScriptingMod_v1.0.zip && \
+    #rm -vf /app/Mods/ScriptingMod_v1.0.zip && \
     echo "Change Owner of /app/Mods to 7DaysToDie" && \
     chown --recursive 999:root /app/Mods
 
