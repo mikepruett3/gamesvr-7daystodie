@@ -97,9 +97,13 @@ RUN mkdir Mods/ && `
     # StompiNZ's Bad Company Manager 
         wget https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && `
         unzip ScriptingMod_v1.0.zip; exit 0 && `
-        rm -vf ScriptingMod_v1.0.zip
+        rm -vf ScriptingMod_v1.0.zip && `
+    # Copy Mods Folder to /app/Mods
+    cp -vrf Mods /app/ && `
+    # Change Owner of /app/Mods to 7DaysToDie
+    chown -R 7DaysToDie:root /app/Mods
 
-COPY --chown=7DaysToDie:root ./Mods /app/Mods
+#COPY --chown=7DaysToDie:root ./Mods /app/Mods
     
 USER 7DaysToDie
 
@@ -110,4 +114,4 @@ CMD ["/bin/bash"]
 ONBUILD USER root
 
 # Volumes for Persistent Server Data
-VOLUME [ "/app/.local/share", "/app/Mods"]
+VOLUME [ "/app/.local/share" ]
