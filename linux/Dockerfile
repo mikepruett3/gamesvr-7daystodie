@@ -92,10 +92,10 @@ RUN \
     echo "Change Owner of /app/Saves to 7DaysToDie" && \
     chown --recursive 999:root /app/Saves && \
     echo "Modifying serverconfig.xml" && \
-    sed 's/<!--property name="SaveGameFolder"/<property name="SaveGameFolder"/g' /app/serverconfig.xml && \
-    sed 's/value="absolute path" \/-->/value="\/app\/Saves"\/>/g' /app/serverconfig.xml
+    sed -i 's/<!--property name="SaveGameFolder"/<property name="SaveGameFolder"/g' /app/serverconfig.xml && \
+    sed -i 's/value="absolute path" \/-->/value="\/app\/Saves"\/>/g' /app/serverconfig.xml && \
     echo "Change Owner of //app/serverconfig.xml to 7DaysToDie" && \
-    chown 999:root /app/serverconfig.xml && \
+    chown 999:root /app/serverconfig.xml
 
 USER 7DaysToDie
 
