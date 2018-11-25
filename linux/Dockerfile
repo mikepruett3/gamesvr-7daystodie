@@ -67,24 +67,22 @@ COPY --chown=7DaysToDie:root ./ll-tests /app/ll-tests
 
 RUN chmod +x /app/ll-tests/*.sh
 
-# Install Mods
+# Download and Prepair Mods
 RUN mkdir -p /tmp/Mods && `
     # StompiNZ's Bad Company Manager 
-        # Download, Unzip and Delete BCManager.zip
         wget -P /tmp https://github.com/7days2mod/BadCompanySM/releases/download/v2.5.2_stable/BCManager.zip && `
         unzip /tmp/BCManager.zip -d /tmp/Mods && `
         rm -vf /tmp/BCManager.zip && `
     # Alloc's Server Fixes
-        # Download, Unzip and Delete server_fixes_v14_17_26.tar.gz
         wget -P /tmp http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz && `
         tar -xvzf /tmp/server_fixes_v14_17_26.tar.gz -C /tmp && `
         rm -vf /tmp/server_fixes_v14_17_26.tar.gz && `
     # StompiNZ's Bad Company Manager 
-        # Download, Unzip and Delete ScriptingMod_v1.0.zip
         wget -P /tmp https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && `
         unzip /tmp/ScriptingMod_v1.0.zip -d /tmp; exit 0 && `
         rm -vf /tmp/ScriptingMod_v1.0.zip && `
-        ls /tmp/Mods
+        cp -vf /tmp/Mods /app/Mods && `
+        chown -Rvf 7DaysToDie:root /app/Mods
 
 # # Create /tmp/Mods
 # RUN mkdir -p /tmp/Mods
@@ -105,7 +103,7 @@ RUN mkdir -p /tmp/Mods && `
 # RUN rm -vf /tmp/ScriptingMod_v1.0.zip
 # RUN ls -l /tmp/Mods
 
-COPY --chown=7DaysToDie:root /tmp/Mods /app/Mods
+#COPY --chown=7DaysToDie:root /tmp/Mods /app/Mods
     
 USER 7DaysToDie
 
