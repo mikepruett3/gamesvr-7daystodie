@@ -67,42 +67,43 @@ COPY --chown=7DaysToDie:root ./ll-tests /app/ll-tests
 
 RUN chmod +x /app/ll-tests/*.sh
 
-## Install Mods
-#RUN mkdir -p /tmp/Mods && `
-#    # StompiNZ's Bad Company Manager 
-#        # Download, Unzip and Delete BCManager.zip
-#        wget -P /tmp https://github.com/7days2mod/BadCompanySM/releases/download/v2.5.2_stable/BCManager.zip && `
-#        unzip /tmp/BCManager.zip -d /tmp/Mods && `
-#        rm -vf /tmp/BCManager.zip && `
-#    # Alloc's Server Fixes
-#        # Download, Unzip and Delete server_fixes_v14_17_26.tar.gz
-#        wget -P /tmp http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz && `
-#        tar -xvzf /tmp/server_fixes_v14_17_26.tar.gz -C /tmp && `
-#        rm -vf /tmp/server_fixes_v14_17_26.tar.gz && `
-#    # StompiNZ's Bad Company Manager 
-#        # Download, Unzip and Delete ScriptingMod_v1.0.zip
-#        wget -P /tmp https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && `
-#        unzip /tmp/ScriptingMod_v1.0.zip -d /tmp && `
-#        rm -vf /tmp/ScriptingMod_v1.0.zip
+# Install Mods
+RUN mkdir -p /tmp/Mods && `
+    # StompiNZ's Bad Company Manager 
+        # Download, Unzip and Delete BCManager.zip
+        wget -P /tmp https://github.com/7days2mod/BadCompanySM/releases/download/v2.5.2_stable/BCManager.zip && `
+        unzip /tmp/BCManager.zip -d /tmp/Mods && `
+        rm -vf /tmp/BCManager.zip && `
+    # Alloc's Server Fixes
+        # Download, Unzip and Delete server_fixes_v14_17_26.tar.gz
+        wget -P /tmp http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz && `
+        tar -xvzf /tmp/server_fixes_v14_17_26.tar.gz -C /tmp && `
+        rm -vf /tmp/server_fixes_v14_17_26.tar.gz && `
+    # StompiNZ's Bad Company Manager 
+        # Download, Unzip and Delete ScriptingMod_v1.0.zip
+        wget -P /tmp https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && `
+        unzip /tmp/ScriptingMod_v1.0.zip -d /tmp; exit 0 && `
+        rm -vf /tmp/ScriptingMod_v1.0.zip && `
+        ls /tmp/Mods
 
-# Create /tmp/Mods
-RUN mkdir -p /tmp/Mods
-
-# Download StompiNZ's Bad Company Manager 
-RUN wget -P /tmp https://github.com/7days2mod/BadCompanySM/releases/download/v2.5.2_stable/BCManager.zip
-RUN unzip /tmp/BCManager.zip -d /tmp/Mods
-RUN rm -vf /tmp/BCManager.zip
-
-# Alloc's Server Fixes
-RUN wget -P /tmp http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz
-RUN tar -xvzf /tmp/server_fixes_v14_17_26.tar.gz -C /tmp
-RUN rm -vf /tmp/server_fixes_v14_17_26.tar.gz
-
-# StompiNZ's Bad Company Manager 
-RUN wget -P /tmp https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip
-RUN unzip -j /tmp/ScriptingMod_v1.0.zip -d /tmp; exit 0
-RUN rm -vf /tmp/ScriptingMod_v1.0.zip
-RUN ls -l /tmp/Mods
+# # Create /tmp/Mods
+# RUN mkdir -p /tmp/Mods
+# 
+# # Download StompiNZ's Bad Company Manager 
+# RUN wget -P /tmp https://github.com/7days2mod/BadCompanySM/releases/download/v2.5.2_stable/BCManager.zip
+# RUN unzip /tmp/BCManager.zip -d /tmp/Mods
+# RUN rm -vf /tmp/BCManager.zip
+# 
+# # Alloc's Server Fixes
+# RUN wget -P /tmp http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz
+# RUN tar -xvzf /tmp/server_fixes_v14_17_26.tar.gz -C /tmp
+# RUN rm -vf /tmp/server_fixes_v14_17_26.tar.gz
+# 
+# # StompiNZ's Bad Company Manager 
+# RUN wget -P /tmp https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip
+# RUN unzip /tmp/ScriptingMod_v1.0.zip -d /tmp; exit 0
+# RUN rm -vf /tmp/ScriptingMod_v1.0.zip
+# RUN ls -l /tmp/Mods
 
 COPY --chown=7DaysToDie:root /tmp/Mods /app/Mods
     
