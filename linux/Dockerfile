@@ -88,7 +88,7 @@ RUN \
     echo "Change Owner of /app/Mods to 7DaysToDie" && \
     chown --recursive 999:root /app/Mods && \
     echo "Change Owner of /app/.local to 7DaysToDie" && \
-    chown --recursive 999:root /app/.local/share/7DaysToDie
+    chown --recursive 999:root /app/.local
 
 USER 7DaysToDie
 
