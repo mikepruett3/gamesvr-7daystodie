@@ -85,21 +85,19 @@ RUN chmod +x /app/ll-tests/*.sh
 #        chown -Rvf 7DaysToDie:root /app/Mods
 
 # Download and Prepair Mods
-RUN mkdir Mods/ && `
+RUN mkdir /app/Mods && `
     # StompiNZ's Bad Company Manager 
-        wget https://github.com/7days2mod/BadCompanySM/releases/download/v2.5.2_stable/BCManager.zip && `
-        unzip BCManager.zip -d Mods/ && `
-        rm -vf BCManager.zip && `
+        wget -P /app/Mods https://github.com/7days2mod/BadCompanySM/releases/download/v2.5.2_stable/BCManager.zip && `
+        unzip /app/Mods/BCManager.zip -d /app/Mods && `
+        rm -vf /app/Mods/BCManager.zip && `
     # Alloc's Server Fixes
-        wget http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz && `
-        tar -xvzf server_fixes_v14_17_26.tar.gz && `
-        rm -vf server_fixes_v14_17_26.tar.gz && `
+        wget -P /app/Mods http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz && `
+        tar -xvzf /app/Mods/server_fixes_v14_17_26.tar.gz -C /app && `
+        rm -vf -P /app/Mods/server_fixes_v14_17_26.tar.gz && `
     # StompiNZ's Bad Company Manager 
-        wget https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && `
-        unzip ScriptingMod_v1.0.zip; exit 0 && `
-        rm -vf ScriptingMod_v1.0.zip && `
-    # Copy Mods Folder to /app/Mods
-    cp -vrf Mods /app/ && `
+        wget -P /app/Mods https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && `
+        unzip /app/Mods/ScriptingMod_v1.0.zip -d /app; exit 0 && `
+        rm -vf /app/Mods/ScriptingMod_v1.0.zip && `
     # Change Owner of /app/Mods to 7DaysToDie
     chown -R 7DaysToDie:root /app/Mods
 
