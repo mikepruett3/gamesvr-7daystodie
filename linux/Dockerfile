@@ -99,7 +99,9 @@ RUN mkdir /app/Mods && `
         unzip /app/Mods/ScriptingMod_v1.0.zip -d /app; exit 0 && `
         rm -vf /app/Mods/ScriptingMod_v1.0.zip && `
     # Change Owner of /app/Mods to 7DaysToDie
-    chown -R 7DaysToDie:root /app/Mods
+    chown --recursive 999:root /app/Mods && `
+    # Change Owner of /app/.local to 7DaysToDie
+    chown --recursive 999:root /app/.local/share/7DaysToDie/Saves
 
 #COPY --chown=7DaysToDie:root ./Mods /app/Mods
     
@@ -112,4 +114,4 @@ CMD ["/bin/bash"]
 ONBUILD USER root
 
 # Volumes for Persistent Server Data
-VOLUME [ "/app/.local/share" ]
+VOLUME [ "/app/.local/share/7DaysToDie/Saves", "/app/Mods" ]
