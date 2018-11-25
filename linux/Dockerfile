@@ -87,10 +87,8 @@ RUN \
     7z rn /app/zipfix/ScriptingMod_v1.0.zip $(7z l /app/zipfix/ScriptingMod_v1.0.zip | grep '\\' | awk '{ print $6, gsub(/\\/, "/",$0); print $6}' | awk '{ print $1}' | paste -s) && \
     7z x /app/zipfix/ScriptingMod_v1.0.zip -o/app && \
     rm -vrf /app/zipfix && \
-    echo "Change Owner of /app/Mods to 7DaysToDie" && \
-    chown --recursive 999:root /app/Mods && \
-    echo "Change Owner of /app/.local to 7DaysToDie" && \
-    chown --recursive 999:root /app/.local
+    echo "Change Owner of /app to 7DaysToDie" && \
+    chown 999:root -R /app
 
 USER 7DaysToDie
 
