@@ -86,9 +86,7 @@ RUN \
     bsdtar -x -f /app/Mods/ScriptingMod_v1.0.zip -C /app && \
     rm -vf /app/Mods/ScriptingMod_v1.0.zip && \
     echo "Change Owner of /app/Mods to 7DaysToDie" && \
-    chown --recursive 999:root /app/Mods && \
-    echo "Change Owner of /app/.local to 7DaysToDie" && \
-    chown --recursive 999:root /app/.local
+    chown --recursive 999:root /app/Mods
 
 USER 7DaysToDie
 
