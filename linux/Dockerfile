@@ -40,7 +40,8 @@ RUN \
         xmlstarlet \
         nano \
         wget \
-        unzip && \
+        unzip \
+        bsdtar && \
     apt-get clean && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment && \
     rm -rf /var/lib/apt/lists/*
@@ -75,18 +76,14 @@ RUN \
     echo "Installing StompiNZ's Bad Company Manager" && \
     wget -P /app/Mods https://github.com/7days2mod/BadCompanySM/releases/download/v2.5.2_stable/BCManager.zip && \
     unzip /app/Mods/BCManager.zip -d /app/Mods && \
+    rm -vf /app/Mods/BCManager.zip && \
     echo "Installing Alloc's Server Fixes" && \
     wget -P /app/Mods http://illy.bz/fi/7dtd/server_fixes_v14_17_26.tar.gz && \
     tar -xvzf /app/Mods/server_fixes_v14_17_26.tar.gz -C /app && \
+    rm -vf /app/Mods/server_fixes_v14_17_26.tar.gz && \
     echo "Installing djkrose's Scripting Mod" && \
     wget -P /app/Mods https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && \
-    unzip /app/Mods/ScriptingMod_v1.0.zip -d /app
-
-# Cleanup after Mods Install
-RUN \
-    echo "Deleting downloads in /app/Mods" && \
-    rm -vf /app/Mods/BCManager.zip && \
-    rm -vf /app/Mods/server_fixes_v14_17_26.tar.gz && \
+    bsdtar -x -f /app/Mods/ScriptingMod_v1.0.zip -C /app && \
     rm -vf /app/Mods/ScriptingMod_v1.0.zip && \
     echo "Change Owner of /app/Mods to 7DaysToDie" && \
     chown --recursive 999:root /app/Mods && \
