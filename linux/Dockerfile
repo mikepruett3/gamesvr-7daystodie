@@ -41,7 +41,7 @@ RUN \
         nano \
         wget \
         unzip \
-        bsdtar && \
+        p7zip-full && \
     apt-get clean && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment && \
     rm -rf /var/lib/apt/lists/*
@@ -83,7 +83,7 @@ RUN \
     rm -vf /app/Mods/server_fixes_v14_17_26.tar.gz && \
     echo "Installing djkrose's Scripting Mod" && \
     wget -P /app/Mods https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip && \
-    bsdtar -xf /app/Mods/ScriptingMod_v1.0.zip -C /app/ && \
+    7z x /app/Mods/ScriptingMod_v1.0.zip -o/app && \
     #rm -vf /app/Mods/ScriptingMod_v1.0.zip && \
     echo "Change Owner of /app/Mods to 7DaysToDie" && \
     chown --recursive 999:root /app/Mods
