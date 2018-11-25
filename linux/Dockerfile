@@ -8,8 +8,7 @@ ARG SKIP_STEAMCMD=false
 COPY --chown=SteamCMD:root  ./steamcmd-cache /output
 
 # Download 7 Days to Die Dedicated Server via SteamCMD
-RUN \
-    if [ "$SKIP_STEAMCMD" = true ] ; then \
+RUN if [ "$SKIP_STEAMCMD" = true ] ; then \
         echo "\n\nSkipping SteamCMD install -- using only contents from steamcmd-cache\n\n"; \
     else \
         echo "\n\nDownloading 7 Days to Die Dedicated Server via SteamCMD"; \
@@ -28,8 +27,7 @@ ARG SOURCE_COMMIT=unspecified
 
 HEALTHCHECK NONE
 
-RUN \
-    dpkg --add-architecture i386 && \
+RUN dpkg --add-architecture i386 && \
     apt-get update && apt-get install -y \
         ca-certificates \
         lib32gcc1 \
@@ -59,8 +57,7 @@ LABEL org.label-schema.description="7 Days to Die Dedicated Server"
 LABEL org.label-schema.vcs-url="https://github.com/LacledesLAN/gamesvr-7daystodie"
 
 # Set up Enviornment
-RUN \
-    useradd --home /app --gid root --system 7DaysToDie && \
+RUN useradd --home /app --gid root --system 7DaysToDie && \
     mkdir -p /app/ll-tests && \
     chown 7DaysToDie:root -R /app
 
@@ -68,13 +65,10 @@ COPY --chown=7DaysToDie:root --from=seven-builder /output /app
 
 COPY --chown=7DaysToDie:root ./ll-tests /app/ll-tests
 
-RUN \
-    chmod +x /app/ll-tests/*.sh
+RUN chmod +x /app/ll-tests/*.sh
 
 # Install Mods
-RUN \
-    # Create MODS directory in /tmp/
-    mkdir -p /tmp/Mods && \
+RUN mkdir -p /tmp/Mods && \
 
     # StompiNZ's Bad Company Manager 
         # Download, Unzip and Delete BCManager.zip
