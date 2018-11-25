@@ -41,6 +41,7 @@ RUN \
         nano \
         wget \
         unzip \
+        libzstd-dev \
         bsdtar && \
     apt-get clean && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment && \
