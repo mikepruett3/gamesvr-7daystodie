@@ -102,6 +102,7 @@ RUN rm -vf /tmp/server_fixes_v14_17_26.tar.gz
 RUN wget -P /tmp https://github.com/djkrose/7DTD-ScriptingMod/releases/download/v1.0/ScriptingMod_v1.0.zip
 RUN unzip -j /tmp/ScriptingMod_v1.0.zip -d /tmp; exit 0
 RUN rm -vf /tmp/ScriptingMod_v1.0.zip
+RUN ls -l /tmp/
 
 COPY --chown=7DaysToDie:root /tmp/Mods /app/Mods
     
